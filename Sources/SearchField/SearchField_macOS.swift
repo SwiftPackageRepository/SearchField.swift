@@ -33,9 +33,19 @@ public struct SearchField: View {
 
     @Binding private var text: String
     @State private var isEditing = false
+    private let background: Color
+    private let foregroundColor: Color
 
     public init(text: Binding<String>) {
         _text = text
+        self.background = Color.searchFieldBackground
+        self.foregroundColor = Color.searchFieldForegroundColor
+    }
+
+    public init(text: Binding<String>, background: Color?, foreground: Color?) {
+        _text = text
+        self.background = background ?? Color.searchFieldBackground
+        self.foregroundColor = foreground ?? Color.searchFieldForegroundColor
     }
 
     @ViewBuilder
@@ -52,6 +62,7 @@ public struct SearchField: View {
                 })
                 .padding(7)
                 .padding(.horizontal, 25)
+                .background(background)
                 .cornerRadius(8)
                 .textFieldStyle(PlainTextFieldStyle())
                 .overlay(
@@ -79,9 +90,6 @@ public struct SearchField: View {
         }
         .foregroundColor(foregroundColor)
     }
-
-    var foregroundColor: Color { Color(NSColor.controlTextColor)
-    }
 }
 
 extension NSTextField {
@@ -106,6 +114,15 @@ struct SearchField_Previews: PreviewProvider {
             searchField
                 .environment(\.locale, .init(identifier: "de"))
         }
+    }
+}
+
+public extension Color {
+    static var searchFieldBackground: Color {
+        Color(NSColor.windowBackgroundColor).opacity(0.6)
+    }
+    static var searchFieldForegroundColor: Color {
+        Color(NSColor.controlTextColor)
     }
 }
 

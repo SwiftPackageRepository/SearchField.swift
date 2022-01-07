@@ -34,9 +34,19 @@ public struct SearchField: View {
     @ObservedObject private var viewModel = SearchFieldViewModel()
     @Binding private var text: String
     @State private var isEditing = false
+    private let background: Color
+    private let foregroundColor: Color
 
     public init(text: Binding<String>) {
         _text = text
+        self.background = Color.searchFieldBackground
+        self.foregroundColor = Color.searchFieldForegroundColor
+    }
+
+    public init(text: Binding<String>, background: Color?, foreground: Color?) {
+        _text = text
+        self.background = background ?? Color.searchFieldBackground
+        self.foregroundColor = foreground ?? Color.searchFieldForegroundColor
     }
 
     @ViewBuilder
@@ -46,6 +56,7 @@ public struct SearchField: View {
                       text: $text)
                 .padding(7)
                 .padding(.horizontal, 25)
+                .background(background)
                 .cornerRadius(8)
                 .textFieldStyle(PlainTextFieldStyle())
                 .foregroundColor(foregroundColor)
@@ -75,8 +86,30 @@ public struct SearchField: View {
         .foregroundColor(foregroundColor)
         .padding(.vertical, 8)
     }
+}
 
-    var foregroundColor: Color {
+struct SearchField_Previews: PreviewProvider {
+    static var previews: some View {
+        SearchField(text: .constant(""))
+    }
+}
+
+public extension Color {
+    static var searchFieldBackground: Color {
+        if #available(tvOS 13, *) {
+            return Color(UIColor { (traitCollection: UITraitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .dark {
+                    return UIColor(red: 0.163, green: 0.168, blue: 0.177, alpha: 1)
+                } else {
+                    return UIColor(red: 0.891, green: 0.891, blue: 0.915, alpha: 1)
+                }
+            })
+        } else {
+            return Color(UIColor(red: 0.891, green: 0.891, blue: 0.915, alpha: 1))
+        }
+    }
+
+    static var searchFieldForegroundColor: Color {
         if #available(tvOS 13, *) {
             return Color(UIColor { (traitCollection: UITraitCollection) -> UIColor in
                 if traitCollection.userInterfaceStyle == .dark {
@@ -88,12 +121,6 @@ public struct SearchField: View {
         } else {
             return Color(UIColor(red: 0.383, green: 0.408, blue: 0.44, alpha: 1))
         }
-    }
-}
-
-struct SearchField_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchField(text: .constant(""))
     }
 }
 

@@ -31,9 +31,19 @@ public struct SearchField: View {
     @ObservedObject private var viewModel = SearchFieldViewModel()
     @Binding private var text: String
     @State private var isEditing = false
+    private let background: Color
+    private let foregroundColor: Color
 
     public init(text: Binding<String>) {
         _text = text
+        self.background = Color.searchFieldBackground
+        self.foregroundColor = Color.searchFieldForegroundColor
+    }
+
+    public init(text: Binding<String>, background: Color?, foreground: Color?) {
+        _text = text
+        self.background = background ?? Color.searchFieldBackground
+        self.foregroundColor = foreground ?? Color.searchFieldForegroundColor
     }
 
     @ViewBuilder
@@ -54,7 +64,7 @@ public struct SearchField: View {
             .accentColor(foregroundColor)
             .padding(7)
             .padding(.horizontal, 32)
-            .background(backgroundColor)
+            .background(background)
             .cornerRadius(8)
             .textFieldStyle(PlainTextFieldStyle())
             .autocapitalization(.none)
@@ -90,38 +100,6 @@ public struct SearchField: View {
         .foregroundColor(foregroundColor)
         .padding(.vertical, 8)
     }
-
-    var backgroundColor: Color {
-        if #available(iOS 13, *) {
-            return Color(UIColor { (traitCollection: UITraitCollection) -> UIColor in
-                if traitCollection.userInterfaceStyle == .dark {
-                    return UIColor(red: 0.163, green: 0.168, blue: 0.177, alpha: 1)
-                } else {
-                    return UIColor(red: 0.891, green: 0.891, blue: 0.915, alpha: 1)
-                }
-            })
-        } else {
-            return Color(UIColor(red: 0.891, green: 0.891, blue: 0.915, alpha: 1))
-        }
-    }
-
-    var magnifyingglassColor: Color {
-        foregroundColor
-    }
-
-    var foregroundColor: Color {
-        if #available(iOS 13, *) {
-            return Color(UIColor { (traitCollection: UITraitCollection) -> UIColor in
-                if traitCollection.userInterfaceStyle == .dark {
-                    return UIColor(red: 0.618, green: 0.618, blue: 0.647, alpha: 1)
-                } else {
-                    return UIColor(red: 0.383, green: 0.408, blue: 0.44, alpha: 1)
-                }
-            })
-        } else {
-            return Color(UIColor(red: 0.383, green: 0.408, blue: 0.44, alpha: 1))
-        }
-    }
 }
 
 struct SearchField_Previews: PreviewProvider {
@@ -138,6 +116,36 @@ struct SearchField_Previews: PreviewProvider {
                 .environment(\.locale, .init(identifier: "fr"))
             searchBar
                 .environment(\.locale, .init(identifier: "de"))
+        }
+    }
+}
+
+public extension Color {
+    static var searchFieldBackground: Color {
+        if #available(iOS 13, *) {
+            return Color(UIColor { (traitCollection: UITraitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .dark {
+                    return UIColor(red: 0.163, green: 0.168, blue: 0.177, alpha: 1)
+                } else {
+                    return UIColor(red: 0.891, green: 0.891, blue: 0.915, alpha: 1)
+                }
+            })
+        } else {
+            return Color(UIColor(red: 0.891, green: 0.891, blue: 0.915, alpha: 1))
+        }
+    }
+    
+    static var searchFieldForegroundColor: Color {
+        if #available(iOS 13, *) {
+            return Color(UIColor { (traitCollection: UITraitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .dark {
+                    return UIColor(red: 0.618, green: 0.618, blue: 0.647, alpha: 1)
+                } else {
+                    return UIColor(red: 0.383, green: 0.408, blue: 0.44, alpha: 1)
+                }
+            })
+        } else {
+            return Color(UIColor(red: 0.383, green: 0.408, blue: 0.44, alpha: 1))
         }
     }
 }
