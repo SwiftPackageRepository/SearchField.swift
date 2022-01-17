@@ -3,14 +3,14 @@
 SearchField is **created and maintaned with ❥** by Sascha Muellner.
 
 ---
-[![Swift](https://github.com/SwiftPackageRepository/SearchField.swift/workflows/Swift/badge.svg?branch=master)](https://github.com/SwiftPackageRepository/SearchField.swift/actions)
-[![codecov](https://codecov.io/gh/SwiftPackageRepository/SearchField.swift/branch/master/graph/badge.svg)](https://codecov.io/gh/SwiftPackageRepository/SearchField.swift)
-![Platforms](https://img.shields.io/badge/platform-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20watchOS%20%7C%20Linux-lightgrey.svg)
+[![Swift](https://github.com/SwiftPackageRepository/SearchField.swift/workflows/Swift/badge.svg?branch=main)](https://github.com/SwiftPackageRepository/SearchField.swift/actions)
+[![codecov](https://codecov.io/gh/SwiftPackageRepository/SearchField.swift/branch/main/graph/badge.svg)](https://codecov.io/gh/SwiftPackageRepository/SearchField.swift)
+![Platforms](https://img.shields.io/badge/platform-iOS%20%7C%20macOS%20%7C%20tvOS-lightgrey.svg)
 [![Version](https://img.shields.io/cocoapods/v/SearchField.svg?style=flat)](https://cocoapods.org/pods/SearchField)
-[![License](https://img.shields.io/cocoapods/l/SearchField.svg?style=flat)](https://github.com/SwiftPackageRepository/ISO639.swift/blob/master/LICENSE)
-[![Swift Version](https://img.shields.io/badge/swift-5.1-orange.svg?style=flat)](https://developer.apple.com/swift)
-[![SPM compatible](https://img.shields.io/badge/SPM-compatible-orange.svg?style=flat)](https://github.com/apple/swift-package-manager)
-[![README](https://img.shields.io/badge/-README-lightgrey)](https://SwiftPackageRepository.github.io/SearchField.swift)
+[![License](https://img.shields.io/cocoapods/l/SearchField.svg?style=flat)](https://github.com/SwiftPackageRepository/SearchField.swift/blob/main/LICENSE)
+[![Swift Version](https://img.shields.io/badge/swift-5.4-green.svg?style=flat)](https://developer.apple.com/swift)
+[![SPM compatible](https://img.shields.io/badge/SPM-compatible-green.svg?style=flat)](https://github.com/apple/swift-package-manager)
+[![README](https://img.shields.io/badge/-README-blue)](https://SwiftPackageRepository.github.io/SearchField.swift)
 
 ## What?
 This is a **SwiftUI** package with support for iOS/macOS/tvOS.
